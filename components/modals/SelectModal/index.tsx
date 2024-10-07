@@ -1,13 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Modal, View, Text, TouchableOpacity, FlatList, Animated, PanResponder } from 'react-native';
-import { useGlobalFonts } from '@/constants/fonts';
-import { RadioButton } from 'react-native-paper';
+import React, { useState, useEffect, useRef } from "react";
+import {
+  Modal,
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  Animated,
+  PanResponder,
+} from "react-native";
+import { useGlobalFonts } from "@/constants/fonts";
+import { RadioButton } from "react-native-paper";
 
-import { styled } from 'nativewind';
+import { styled } from "nativewind";
 
-const StyledView = styled(View)
-const StyledText = styled(Text)
-const StyledTouchableOpacity = styled(TouchableOpacity)
+const StyledView = styled(View);
+const StyledText = styled(Text);
+const StyledTouchableOpacity = styled(TouchableOpacity);
 
 interface SelectModalProps {
   isVisible: boolean;
@@ -15,16 +23,24 @@ interface SelectModalProps {
   options: { label: string; symbol?: string; value: string }[];
   onSelect: (option: string) => void;
   title?: string;
-  selectedOption?: string;
+  selectedOption: string;
+  setSelectedOption: (option: string) => void;
 }
 
-const SelectModal: React.FC<SelectModalProps> = ({ isVisible, onClose, options, onSelect, title = 'Select an option' }) => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+const SelectModal: React.FC<SelectModalProps> = ({
+  isVisible,
+  onClose,
+  options,
+  onSelect,
+  title = "Select an option",
+  selectedOption,
+  setSelectedOption,
+}) => {
   const [animation] = useState(new Animated.Value(0));
   const [modalVisible, setModalVisible] = useState(false);
 
   const fontsLoaded = useGlobalFonts();
-  
+
   const panY = useRef(new Animated.Value(0)).current;
   const resetPositionAnim = Animated.timing(panY, {
     toValue: 0,
@@ -105,35 +121,37 @@ const SelectModal: React.FC<SelectModalProps> = ({ isVisible, onClose, options, 
 
   return (
     <Modal visible={modalVisible} transparent animationType="none">
-      <Animated.View 
-        style={{ 
-          flex: 1, 
-          backgroundColor: 'rgba(0,0,0,0.5)', 
-          justifyContent: 'flex-end',
-          opacity: opacity
+      <Animated.View
+        style={{
+          flex: 1,
+          backgroundColor: "rgba(0,0,0,0.5)",
+          justifyContent: "flex-end",
+          opacity: opacity,
         }}
       >
-        <StyledTouchableOpacity 
+        <StyledTouchableOpacity
           className="flex-1 justify-end"
           activeOpacity={1}
           onPress={handleOutsidePress}
         >
-          <Animated.View 
-            style={{ 
+          <Animated.View
+            style={{
               transform: [{ translateY: Animated.add(translateY, panY) }],
-              backgroundColor: 'white',
+              backgroundColor: "white",
               borderTopLeftRadius: 70,
               borderTopRightRadius: 70,
             }}
             {...panResponder.panHandlers}
           >
-            <StyledTouchableOpacity 
+            <StyledTouchableOpacity
               className="bg-white rounded-t-[70px] py-5 px-20"
               activeOpacity={1}
               onPress={(e) => e.stopPropagation()}
             >
               <StyledView className="w-20 h-2 bg-[#8cd96e] mx-auto mb-4" />
-              <StyledText className="text-lg font-bold mb-4 text-center font-['Alexandria-Bold']">{title}</StyledText>
+              <StyledText className="text-lg font-bold mb-4 text-center font-['Alexandria-Bold']">
+                {title}
+              </StyledText>
               <FlatList
                 data={options}
                 keyExtractor={(item) => item.value}
@@ -142,12 +160,16 @@ const SelectModal: React.FC<SelectModalProps> = ({ isVisible, onClose, options, 
                     className={`p-10 flex-row justify-between items-center border-gray-200`}
                     onPress={() => handleSelect(item.value)}
                   >
-                    <StyledText className="text-base font-['Alexandria-Light']">{item.label}</StyledText>
+                    <StyledText className="text-base font-['Alexandria-Light']">
+                      {item.label} &nbsp;&nbsp; {item.symbol && item.symbol}
+                    </StyledText>
                     <RadioButton
                       value={item.value}
-                      status={item.value === selectedOption ? 'checked' : 'unchecked'}
+                      status={
+                        item.value === selectedOption ? "checked" : "unchecked"
+                      }
                       color="#8cd96e"
-                      uncheckedColor='#8cd96e'
+                      uncheckedColor="#8cd96e"
                       onPress={() => handleSelect(item.value)}
                     />
                   </StyledTouchableOpacity>
