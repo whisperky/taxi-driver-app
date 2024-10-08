@@ -1,31 +1,33 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
+    "name": "taxiapp",
+    "slug": "taxi-driver-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "icon": "./assets/images/logo.png",
+    "scheme": "taxiapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.parcerias.taxi-driver-app",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.whisper3029.driverapp"
+      "package": "com.parcerias.myapp"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/logo.png"
     },
     "plugins": [
       "expo-router"
@@ -35,8 +37,11 @@
     },
     "extra": {
       "eas": {
-        "projectId": "bc89d06b-f52a-47e3-8ff4-959e3c10a6bc"
+        "projectId": "74bb3c9f-0465-4b2f-92a0-12fce6b25e78"
       }
-    }
-  }
+    },
+    "owner": "parcerias"
+  },
+  "name": "taxiapp",
+  "displayName": "taxiapp"
 }
