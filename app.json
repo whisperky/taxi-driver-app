@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.parcerias.myapp"
+      "package": "com.whisper3029.driverapp"
     },
     "web": {
       "bundler": "metro",
