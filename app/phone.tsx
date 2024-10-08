@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
-// Remove the CheckBox import from react-native-elements
-// import { CheckBox } from "react-native-elements";
+
 import { useNavigation } from "@react-navigation/native";
+import { router } from "expo-router";
+
 import {
   CountryPicker,
   CountryList,
   CountryButton,
 } from "react-native-country-codes-picker";
+
 type RootStackParamList = {
   Login: undefined;
   MobileVerification: undefined;
 };
-import { router } from "expo-router";
 
 type MobileVerificationScreenNavigationProp = {
   goBack: () => void;
@@ -62,6 +63,7 @@ function ListHeaderComponent({
 
 export default function MobileVerificationScreen() {
   const navigation = useNavigation<MobileVerificationScreenNavigationProp>();
+
   const [mobileNumber, setMobileNumber] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [show, setShow] = useState(false);
