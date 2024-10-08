@@ -62,6 +62,13 @@ export default function RootLayout() {
               headerShown: false,
             }}
           />
+          <Stack.Screen
+            name="dashboard"
+            options={{
+              headerShown: true,
+              title: "Driver Dashboard",
+            }}
+          />
         </Stack>
       </ThemeProvider>
     </AppContext.Provider>

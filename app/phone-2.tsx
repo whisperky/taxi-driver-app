@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
-// Remove the CheckBox import from react-native-elements
-// import { CheckBox } from "react-native-elements";
+
 import { useNavigation } from "@react-navigation/native";
+import { router } from "expo-router";
+
 import {
   CountryPicker,
   CountryList,
@@ -252,6 +253,7 @@ export default function MobileVerificationScreen() {
           className={`w-full py-3  rounded-2xl items-center ${
             isChecked ? "bg-[#8cd96e]" : "bg-gray-300"
           }`}
+          onPress={() => router.push("/dashboard")}
         >
           <Text className="text-white text-center font-['Alexandria-Regular']">
             Continue
