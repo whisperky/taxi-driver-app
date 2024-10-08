@@ -80,15 +80,15 @@ export default function MobileVerificationScreen() {
 
       {/* Phone Icon */}
       <View
-        className="absolute bottom-0 bg-white rounded-t-[70px] pt-[70px] px-[40px] w-full items-center"
+        className="absolute bottom-0 bg-white rounded-t-[70px] pt-16 px-10 w-full items-center"
         style={{
           shadowColor: "#000",
           shadowOffset: {
             width: 0,
             height: -10,
           },
-          shadowOpacity: 0.6,
-          shadowRadius: 5,
+          shadowOpacity: 0.3,
+          shadowRadius: 8,
           elevation: 20,
         }}
       >
@@ -137,7 +137,7 @@ export default function MobileVerificationScreen() {
           placeholder="Email"
           keyboardType="email-address"
         />
-        <View className="flex-row items-center my-5 gap-4">
+        <View className="flex-row items-center my-5">
           <TouchableOpacity
             onPress={() => setShow(true)}
             style={{
@@ -145,6 +145,7 @@ export default function MobileVerificationScreen() {
               height: 60,
               backgroundColor: "white",
               padding: 10,
+              marginRight: 10,
               borderRadius: 10,
               borderWidth: 1,
               borderColor: "#8cd96e",
@@ -162,6 +163,7 @@ export default function MobileVerificationScreen() {
               height: 60,
               backgroundColor: "white",
               padding: 10,
+              marginLeft: 10,
               borderRadius: 10,
               borderWidth: 1,
               borderColor: "#8cd96e",
@@ -259,7 +261,7 @@ export default function MobileVerificationScreen() {
             Continue
           </Text>
         </TouchableOpacity>
-        <Text className="text-center text-black font-['Alexandria-Light'] mb-10 mt-10">
+        <Text className="text-center text-black font-['Alexandria-Light'] mb-16 mt-10">
           Already have an account?{" "}
           <Text className="text-[#8cd96e] underline">Login</Text>
         </Text>

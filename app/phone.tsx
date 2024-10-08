@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image, Platform } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { router } from "expo-router";
@@ -91,21 +91,21 @@ export default function MobileVerificationScreen() {
 
       {/* Phone Icon */}
       <View
-        className="absolute bottom-0 bg-white rounded-t-[70px] pt-[70px] px-[40px] w-full items-center"
-        style={{
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: -10,
-          },
-          shadowOpacity: 0.6,
-          shadowRadius: 5,
-          elevation: 20,
-        }}
+        className={`absolute bottom-0 bg-white rounded-t-[70px] ${Platform.OS === 'ios' ? 'pt-24' : 'pt-36' } px-8 w-full items-center`}
+          style={{
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: -10,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 8,
+            elevation: 20,
+          }}
       >
         <Image
           source={require("@/assets/icons/mobile_pass.png")}
-          className="w-[150px] h-[150px] self-center"
+          className="w-36 h-36 self-center"
         />
         {/* Instruction Text */}
         <Text className="text-center text-base my-[50px] font-['Alexandria-Light']">
@@ -211,7 +211,7 @@ export default function MobileVerificationScreen() {
 
         {/* Continue Button */}
         <TouchableOpacity
-          className={`w-full py-3 mb-[200px] rounded-2xl items-center ${
+          className={`w-full py-3 ${Platform.OS === 'ios' ? 'mb-56' : 'mb-72' } rounded-2xl items-center ${
             isChecked ? "bg-[#8cd96e]" : "bg-gray-300"
           }`}
           disabled={!isChecked}

@@ -144,7 +144,7 @@ const SelectModal: React.FC<SelectModalProps> = ({
             {...panResponder.panHandlers}
           >
             <StyledTouchableOpacity
-              className="bg-white rounded-t-[70px] py-5 px-20"
+              className="bg-white rounded-t-[70px] py-5 px-8"
               activeOpacity={1}
               onPress={(e) => e.stopPropagation()}
             >
