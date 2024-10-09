@@ -6,6 +6,7 @@ import {
   Image,
   StatusBar,
   ScrollView,
+  Platform
 } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
@@ -74,14 +75,14 @@ const LoginScreen = () => {
       <StatusBar backgroundColor="#8cd96e" barStyle="light-content" />
 
       {/* Logo */}
-      <View className="items-center pt-[170px]">
+      <View className="items-center pt-48">
         <Image
           source={require("../assets/images/logo.png")}
-          className="w-[90px] h-[90px]"
+          className="w-20 h-20"
         />
       </View>
 
-      <View className="flex-1 items-center justify-start pt-[50px] pb-[10px]">
+      <View className="flex-1 items-center justify-start pt-10 pb-4">
         {/* Welcome Back Text */}
         <Text className="font-['Alexandria-Regular'] text-2xl">
           Welcome Back
@@ -92,76 +93,91 @@ const LoginScreen = () => {
 
         {/* Wrapped content with top rounded corners and shadow */}
         <View
-          className="absolute bottom-0 bg-white rounded-t-[60px] pt-[70px] px-[40px] w-full items-center"
+          className="absolute bottom-0 bg-white rounded-t-[60px] pt-16 px-8 w-full items-center"
           style={{
             shadowColor: "#000",
             shadowOffset: {
               width: 0,
               height: -10,
             },
-            shadowOpacity: 0.6,
-            shadowRadius: 5,
+            shadowOpacity: 0.3,
+            shadowRadius: 8,
             elevation: 20,
           }}
         >
           <ScrollView
-            className="w-full h-[430px]"
+            className={`w-full px-1 ${Platform.OS === 'ios' ? 'h-80' : 'h-96'}`}
             showsVerticalScrollIndicator={false}
           >
             <TouchableOpacity
-              className="bg-[#8cd96e] py-[27px] px-[80px] rounded-[30px] mb-[40px] w-full items-center"
-              style={{
-                shadowColor: "#777",
-                shadowOffset: {
-                  width: 0,
-                  height: 0,
-                },
-                shadowRadius: 5,
-                elevation: 6,
-              }}
+              className="bg-[#8cd96e] py-6 rounded-3xl mb-7 w-full items-center"
+              style={Platform.OS === 'ios' 
+                ? {
+                    shadowColor: "#777",
+                    shadowOffset: {
+                      width: 0,
+                      height: 5,
+                    },
+                    shadowOpacity: 1, // Added shadowOpacity for iOS
+                    shadowRadius: 10,
+                  }
+                : {
+                    elevation: 6,
+                  }
+              }
               onPress={handleRegisterPress}
             >
-              <Text className="font-['Alexandria-Regular'] text-white text-base py-[20px]">
+              <Text className={`font-['Alexandria-Regular'] text-white text-base ${Platform.OS === 'ios' ? 'py-2' : 'py-4'}`}>
                 Continue with Phone Number
               </Text>
             </TouchableOpacity>
 
             {/* Register Button */}
             <TouchableOpacity
-              className="bg-white py-[25px] px-[80px] rounded-[30px] mb-[40px] w-full items-center"
-              style={{
-                shadowColor: "#777",
-                shadowOffset: {
-                  width: 0,
-                  height: 0,
-                },
-                shadowRadius: 5,
-                elevation: 6,
-              }}
+              className={`bg-white py-5 rounded-3xl mb-7 w-full items-center border ${Platform.OS === 'ios' ? 'border-[#ccc]' : 'border-[#ddd]'}`}
+              style={Platform.OS === 'ios' 
+                ? {
+                    shadowColor: "#777",
+                    shadowOffset: {
+                      width: 0,
+                      height: 5,
+                    },
+                    shadowOpacity: 0.7, // Added shadowOpacity for iOS
+                    shadowRadius: 10,
+                  }
+                : {
+                    elevation: 6,
+                  }
+              }
               onPress={handleRegisterPress}
             >
-              <Text className="font-['Alexandria-Light'] text-black text-base py-[20px]">
+              <Text className={`font-['Alexandria-Light'] text-black text-base ${Platform.OS === 'ios' ? 'py-2' : 'py-4'}`}>
                 Register
               </Text>
             </TouchableOpacity>
 
             {/* Google and Facebook login options */}
-            <View className="flex-row grid grid-cols-2 gap-4 justify-between w-full px-[20px] mb-[30px]">
+            <View className="flex-row justify-between w-full mb-7">
               <TouchableOpacity
-                className="bg-white flex-row items-center py-[30px] px-[60px] rounded-[50px] border border-[#ddd]"
-                style={{
-                  shadowColor: "#777",
-                  shadowOffset: {
-                    width: 0,
-                    height: 0,
-                  },
-                  shadowRadius: 5,
-                  elevation: 6,
-                }}
+                className={`flex-1 bg-white flex-row items-center justify-center py-6 mr-10 rounded-3xl border ${Platform.OS === 'ios' ? 'border-[#ccc]' : 'border-[#ddd]'}`}
+                style={Platform.OS === 'ios' 
+                  ? {
+                      shadowColor: "#777",
+                      shadowOffset: {
+                        width: 0,
+                        height: 5,
+                      },
+                      shadowOpacity: 1, // Added shadowOpacity for iOS
+                      shadowRadius: 10,
+                    }
+                  : {
+                      elevation: 6,
+                    }
+                }
               >
                 <Image
                   source={require("../assets/images/google.png")}
-                  className="w-[40px] h-[40px] mr-[10px]"
+                  className="w-8 h-8 mr-2"
                 />
                 <Text className="font-['Alexandria-Light'] text-sm">
                   Google
@@ -169,20 +185,25 @@ const LoginScreen = () => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                className="bg-white flex-row items-center py-[30px] px-[60px] rounded-[50px] border border-[#ddd]"
-                style={{
-                  shadowColor: "#777",
-                  shadowOffset: {
-                    width: 0,
-                    height: 0,
-                  },
-                  shadowRadius: 5,
-                  elevation: 6,
-                }}
+                className={`flex-1 bg-white flex-row items-center justify-center py-6 rounded-3xl border ${Platform.OS === 'ios' ? 'border-[#ccc]' : 'border-[#ddd]'}`}
+                style={Platform.OS === 'ios' 
+                  ? {
+                      shadowColor: "#777",
+                      shadowOffset: {
+                        width: 0,
+                        height: 5,
+                      },
+                      shadowOpacity: 1, // Added shadowOpacity for iOS
+                      shadowRadius: 10,
+                    }
+                  : {
+                      elevation: 6,
+                    }
+                }
               >
                 <Image
                   source={require("../assets/images/facebook.png")}
-                  className="w-[40px] h-[40px] mr-[10px]"
+                  className="w-8 h-8 mr-2"
                 />
                 <Text className="font-['Alexandria-Light'] text-sm">
                   Facebook
@@ -191,21 +212,26 @@ const LoginScreen = () => {
             </View>
 
             <TouchableOpacity
-              className="w-[90%] mx-[5%] bg-white flex-row items-center py-[30px] px-[60px] rounded-[50px] border border-[#ddd]"
-              style={{
-                shadowColor: "#777",
-                shadowOffset: {
-                  width: 0,
-                  height: 0,
-                },
-                shadowRadius: 5,
-                elevation: 6,
-              }}
+              className={`w-full bg-white flex-row items-center py-5 mb-2 rounded-3xl border ${Platform.OS === 'ios' ? 'border-[#ccc]' : 'border-[#ddd]'}`}
+              style={Platform.OS === 'ios' 
+                ? {
+                    shadowColor: "#777",
+                    shadowOffset: {
+                      width: 0,
+                      height: 5,
+                    },
+                    shadowOpacity: 1, // Added shadowOpacity for iOS
+                    shadowRadius: 10,
+                  }
+                : {
+                    elevation: 6,
+                  }
+              }
             >
               <View className="w-full flex-row items-center justify-center">
                 <Image
                   source={require("../assets/icons/apple.png")}
-                  className="w-[40px] h-[40px] mr-[10px]"
+                  className="w-10 h-10 mr-2"
                 />
                 <Text className="font-['Alexandria-Light'] text-sm">Apple</Text>
               </View>
@@ -213,7 +239,7 @@ const LoginScreen = () => {
           </ScrollView>
 
           {/* Footer: Language and Currency Options */}
-          <View className="flex-row justify-between w-full my-[40px] px-[40px]">
+          <View className="flex-row justify-between w-full my-8 px-8">
             <TouchableOpacity
               className="flex-row items-center"
               onPress={() => setLanguageModalVisible(true)}
@@ -223,7 +249,7 @@ const LoginScreen = () => {
               </Text>
               <Image
                 source={require("../assets/icons/down-arrow.png")}
-                className="w-[20px] h-[20px] mr-[10px]"
+                className="w-4 h-4 mr-2"
               />
             </TouchableOpacity>
             <TouchableOpacity
@@ -235,7 +261,7 @@ const LoginScreen = () => {
               </Text>
               <Image
                 source={require("../assets/icons/down-arrow.png")}
-                className="w-[20px] h-[20px] mr-[10px]"
+                className="w-4 h-4 mr-2"
               />
             </TouchableOpacity>
           </View>
